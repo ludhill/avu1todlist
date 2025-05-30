@@ -1,6 +1,7 @@
 import sqlite3
 import click
 from flask import current_app, g
+from flask.cli import with_appcontext
 
 def get_db():
     if 'db' not in g:
@@ -22,7 +23,13 @@ def init_db():
         db.executescript(f.read().decode('utf8'))
 
 @click.command('init-db')
+@with_appcontext
 def init_db_command():
     """Inicializa o banco de dados."""
     init_db()
     click.echo('Banco de dados inicializado.')
+
+def init_app(app):
+    """Registra as funções de banco de dados na aplicação Flask."""
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)

@@ -18,8 +18,21 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # Registrar o banco de dados
+    from . import db
+    db.init_app(app)
+
+    # Registrar os Blueprints
+    from . import auth, todo
+    app.register_blueprint(auth.bp)
+    app.register_blueprint(todo.bp)
+
     @app.route('/hello')
     def hello():
         return 'Olá, Seus Galado!'
+
+    @app.route('/')
+    def index():
+        return 'Bem-vindo à To-Do List!'
 
     return app
