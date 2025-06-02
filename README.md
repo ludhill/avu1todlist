@@ -1,7 +1,7 @@
 Testar manualmente
 1. Ativar o ambiente virtual
 source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate  # Windows
+.venv\Scripts\activate  # Windows
 
 2. Inicializar o banco de dados
 flask --app flaskr init-db

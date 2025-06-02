@@ -5,6 +5,10 @@ from flaskr.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('auth/login.html')
+
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':

@@ -24,8 +24,8 @@ def create_app(test_config=None):
 
     # Registrar os Blueprints
     from . import auth, todo
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(todo.bp)
+    app.register_blueprint(auth.bp, url_prefix="/auth")
+    app.register_blueprint(todo.bp, url_prefix="/todo")
 
     @app.route('/hello')
     def hello():
@@ -36,3 +36,5 @@ def create_app(test_config=None):
         return 'Bem-vindo à To-Do List!'
 
     return app
+
+    #app.register_blueprint(admin_bp, url_prefix="/admin")

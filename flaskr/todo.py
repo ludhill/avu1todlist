@@ -18,3 +18,4 @@ def index():
     db = get_db()
     tasks = db.execute("SELECT * FROM tasks").fetchall()
     return render_template('todo/index.html', tasks=tasks)
+#from flaskr.db import get_db
